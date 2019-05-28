@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Perceptron_Training_Tool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Perceptron Training Tool" Height="550" Width="800" MinHeight="550" MinWidth="800">
+    <Window.DataContext>
+        <local:MainWindow/>
+    </Window.DataContext>
+    <DockPanel LastChildFill="True">
+        <Menu Height="25" DockPanel.Dock="Top">
+            <MenuItem Header="Network">
+                <MenuItem Header="Create"></MenuItem>
+                <MenuItem Header="Export"></MenuItem>
+                <MenuItem Header="Import"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Train" >
+                <MenuItem Header="Train by Epoch"/>
+                <MenuItem Header="Train by Error"/>
+            </MenuItem>
+            <MenuItem Header="Chart" >
+                <MenuItem x:Name="OpenChart" Header="Open" Click="OpenChart_Click"/>
+            </MenuItem>
+            <MenuItem Header="About"></MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem/>
+            <TextBlock x:Name ="ProgressBar" Text="ProgressBar's Place"/>
+        </StatusBar>
+        <GroupBox DockPanel.Dock="Left" Header="Calculate Output" Padding="5" Width="200">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name ="InputBox" PreviewTextInput="InputBox_PreviewTextInput" Margin ="3" Width="120" HorizontalAlignment="Left">0 1</TextBox>
+                    <TextBlock Margin ="3" Text="Input" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="OutputBox" Margin ="3" Width="120" HorizontalAlignment="Left"></TextBox>
+                    <TextBlock Margin ="3" Text="Output" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name ="CalculateButton" Click="CalculateButton_Click" Margin ="3 5 10 5" Width ="70" Content="Calculate"/>
+                    <Button Margin ="5" Width ="70" HorizontalAlignment="Right" Content="Cancel"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Left" Header="Neural Network Parameters" Padding="5" Width="200">
+            <StackPanel>
+            </StackPanel> 
+        </GroupBox>
+    </DockPanel>
 </Window>

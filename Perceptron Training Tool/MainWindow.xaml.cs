@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using PerceptronLibrary;
+using OxyPlot;
 
 namespace Perceptron_Training_Tool
 {
@@ -20,9 +23,80 @@ namespace Perceptron_Training_Tool
     /// </summary>
     public partial class MainWindow : Window
     {
+        Perceptron network;
+        public IList<DataPoint> Points { get; private set; }
         public MainWindow()
         {
-            InitializeComponent();
+            double[] input = { 0, 0.7 };
+            double[,] inSet = { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+            double[,] outSet = { { 0, 1 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+
+            network = new Perceptron(2, 2);
+            network.Train(inSet, outSet, 2000);
+            ExportToPoints();
+        }
+        
+        protected override void OnClosed(EventArgs e)
+        {
+            Console.Beep();
+            base.OnClosed(e);
+            //System.Diagnostics.Process.GetCurrentProcess().Kill();
+            System.Windows.Application.Current.Shutdown();
+        }
+
+        void ExportToPoints()
+        {
+            this.Points = new List<DataPoint>(network.ErrorPlot.Capacity);
+            foreach (DataPlot dp in network.ErrorPlot)
+            {
+                Points.Add(new DataPoint(dp.Epoch, dp.Error));
+            }
+        }
+
+        private void CalculateButton_Click(object sender, RoutedEventArgs e)
+        {
+            OutputBox.Text = ""; 
+            try
+            {
+                double[] Input = Array.ConvertAll(InputBox.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries), Double.Parse);
+                foreach (double i in Input)
+                {
+                    if(i < 0 || i > 1)
+                    {
+                        MessageBox.Show("Use only float numbers between 0 and 1", "Invalid number");
+                        return;
+                    }
+                    if(Input.Length != network.Size)
+                    {
+                        MessageBox.Show($"Your network uses only {network.Size} float numbers as input", "Invalid count of numbers");
+                        return;
+                    }
+                }
+                double[] output = network.calculateOutput(Input);
+                for(int i = 0; i < output.Length; i++)
+                {
+                    output[i] = Math.Round(output[i], 3);
+                    OutputBox.Text += output[i].ToString();
+                    OutputBox.Text += " ";
+                }
+            }
+            catch
+            {
+                MessageBox.Show($"Check the input", "Error");
+            }
+        }
+
+        private void InputBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[0-9]*(?:\,[0-9]*)?$");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void OpenChart_Click(object sender, RoutedEventArgs e)
+        {
+            GraphWindow graphWindow = new GraphWindow();
+            graphWindow.Owner = this;
+            graphWindow.Show();
         }
     }
 }
