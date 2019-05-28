@@ -11,14 +11,14 @@
     </Window.DataContext>
     <DockPanel LastChildFill="True">
         <Menu Height="25" DockPanel.Dock="Top">
-            <MenuItem Header="Network">
-                <MenuItem Header="Create"></MenuItem>
+            <MenuItem Header="Neural Network">
+                <MenuItem x:Name ="CreateNeuralNetwork" Click="CreateNeuralNetwork_Click"  Header="Create"></MenuItem>
                 <MenuItem Header="Export"></MenuItem>
                 <MenuItem Header="Import"></MenuItem>
             </MenuItem>
             <MenuItem Header="Train" >
-                <MenuItem Header="Train by Epoch"/>
-                <MenuItem Header="Train by Error"/>
+                <MenuItem x:Name="EpochTrain" Click="EpochTrain_Click" Header="Train by Epoch"/>
+                <MenuItem x:Name="ErrorTrain" Click="ErrorTrain_Click" Header="Train by Error"/>
             </MenuItem>
             <MenuItem Header="Chart" >
                 <MenuItem x:Name="OpenChart" Header="Open" Click="OpenChart_Click"/>
@@ -36,7 +36,7 @@
                     <TextBlock Margin ="3" Text="Input" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="OutputBox" Margin ="3" Width="120" HorizontalAlignment="Left"></TextBox>
+                    <TextBox x:Name="OutputBox" IsReadOnly ="true" Margin ="3" Width="120" HorizontalAlignment="Left"></TextBox>
                     <TextBlock Margin ="3" Text="Output" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -47,6 +47,7 @@
         </GroupBox>
         <GroupBox DockPanel.Dock="Left" Header="Neural Network Parameters" Padding="5" Width="200">
             <StackPanel>
+                <TextBox x:Name="TextBox"> </TextBox>
             </StackPanel> 
         </GroupBox>
     </DockPanel>

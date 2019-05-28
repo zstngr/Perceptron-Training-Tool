@@ -1,0 +1,35 @@
+﻿<Window x:Class="Perceptron_Training_Tool.CreateNetworkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Perceptron_Training_Tool"
+        mc:Ignorable="d"
+        Title="Create" Height="150" Width="200" ResizeMode="NoResize">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name ="InputsCountBox" PreviewTextInput="InputsCountBox_PreviewTextInput" MaxLength="4" Margin ="3" Width="80" HorizontalAlignment="Left">2</TextBox>
+            <TextBlock Margin ="3" Text="Count of Inputs" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="OutputsCountBox" PreviewTextInput="OutputsCountBox_PreviewTextInput" MaxLength="4" Margin ="3" Width="80" HorizontalAlignment="Left">2</TextBox>
+            <TextBlock Margin ="3" Text="Count of Outputs" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="SaturationBox" PreviewTextInput="SaturationBox_PreviewTextInput" MaxLength="3" Margin ="3" Width="80" HorizontalAlignment="Left">2,0</TextBox>
+            <TextBlock Margin ="3" Text="Saturation"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+            <ComboBox Width="80" Margin="3">
+                <ComboBoxItem>
+                    <TextBlock>Sigmoid Logistic</TextBlock>
+                </ComboBoxItem>
+            </ComboBox>
+            <TextBlock Margin ="3" Text="ActivationFunctionType" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button IsDefault="True" x:Name ="Apply" Click="Apply_Click" Margin ="13 8 10 8" Width ="70" Content="Apply"/>
+            <Button IsCancel="True" Margin ="8" Width ="70" HorizontalAlignment="Right" Content="Cancel"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

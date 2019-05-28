@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using PerceptronLibrary;
 using OxyPlot;
+using OxyPlot.Wpf;
 
 namespace Perceptron_Training_Tool
 {
@@ -24,16 +25,21 @@ namespace Perceptron_Training_Tool
     public partial class MainWindow : Window
     {
         Perceptron network;
+        int inputsCount;
+        int outputsCount;
+        double saturation;
+
+        double[,] inSet = { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+        double[,] outSet = { { 0, 1 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+
         public IList<DataPoint> Points { get; private set; }
         public MainWindow()
         {
-            double[] input = { 0, 0.7 };
-            double[,] inSet = { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
-            double[,] outSet = { { 0, 1 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+            //double[] input = { 0, 0.7 };
+            //double[,] inSet = { { 1, 0 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
+            //double[,] outSet = { { 0, 1 }, { 0, 1 }, { 1, 1 }, { 0, 0 } };
 
-            network = new Perceptron(2, 2);
-            network.Train(inSet, outSet, 2000);
-            ExportToPoints();
+            //network.Train(inSet, outSet, 2000);
         }
         
         protected override void OnClosed(EventArgs e)
@@ -46,7 +52,7 @@ namespace Perceptron_Training_Tool
 
         void ExportToPoints()
         {
-            this.Points = new List<DataPoint>(network.ErrorPlot.Capacity);
+            Points = new List<DataPoint>(network.ErrorPlot.Capacity);
             foreach (DataPlot dp in network.ErrorPlot)
             {
                 Points.Add(new DataPoint(dp.Epoch, dp.Error));
@@ -94,9 +100,45 @@ namespace Perceptron_Training_Tool
 
         private void OpenChart_Click(object sender, RoutedEventArgs e)
         {
+            ExportToPoints();
             GraphWindow graphWindow = new GraphWindow();
+            LineSeries lineserie = new LineSeries
+            {
+                ItemsSource = Points,
+                DataFieldX = "Epoch",
+                DataFieldY = "Error",
+                StrokeThickness = 2,
+                MarkerSize = 0,
+                Color = System.Windows.Media.Colors.Yellow,
+                LineStyle = LineStyle.Solid,
+                MarkerType = MarkerType.None,
+            };
+            graphWindow.Plot.Series.Add(lineserie);
             graphWindow.Owner = this;
             graphWindow.Show();
+        }
+
+        private void CreateNeuralNetwork_Click(object sender, RoutedEventArgs e)
+        {
+            CreateNetworkWindow createNetworkWindow = new CreateNetworkWindow();
+            createNetworkWindow.Owner = this;
+            if (createNetworkWindow.ShowDialog() == true)
+            {
+                inputsCount = createNetworkWindow.inputsCount;
+                outputsCount = createNetworkWindow.outputsCount;
+                saturation = createNetworkWindow.saturation;
+                network = new Perceptron(inputsCount, outputsCount);
+            }
+        }
+
+        private void EpochTrain_Click(object sender, RoutedEventArgs e)
+        {
+            network.Train(inSet, outSet, 2);
+        }
+
+        private void ErrorTrain_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

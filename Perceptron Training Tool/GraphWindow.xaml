@@ -15,11 +15,7 @@ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <oxy:Plot x:Name="Plot" Grid.Row="0" Title="Dependence graph of the total error on the number of epochs">
-            <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding Points}"/>
-            </oxy:Plot.Series>
-        </oxy:Plot>
+        <oxy:Plot x:Name="Plot" Grid.Row="0" Title="Dependence graph of the total error on the number of epochs"/>
         <DockPanel Grid.Row="1" >
             <Button Name ="SaveButton" Click ="SaveButton_Click" Content="Save chart as png" Height="25" Width="105"/>
         </DockPanel>
