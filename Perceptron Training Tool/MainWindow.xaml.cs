@@ -128,17 +128,18 @@ namespace Perceptron_Training_Tool
             }
         }
 
-        private void EpochTrain_Click(object sender, RoutedEventArgs e)
+        private void TrainingSetup_Click(object sender, RoutedEventArgs e)
         {
-            //network.Train(inSet, outSet, 2000);
             TrainWindow trainWindow = new TrainWindow();
-            trainWindow.Owner = this;
-            trainWindow.Show();
+            if(trainWindow.ShowDialog() == true)
+            {
+                network.Train(inSet, outSet, 0.005);
+            }
         }
 
-        private void ErrorTrain_Click(object sender, RoutedEventArgs e)
+        private void Train_Click(object sender, RoutedEventArgs e)
         {
-            network.Train(inSet, outSet, 0.005);
+
         }
     }
 }

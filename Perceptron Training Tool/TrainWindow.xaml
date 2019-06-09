@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="TrainWindow" Height="300" Width="800">
     <StackPanel Orientation="Horizontal">
-        <GroupBox Header="Train Information" Padding="5" Width="200">
-            <TextBox x:Name="TrainInformation"></TextBox>
-        </GroupBox>
         <GroupBox Header="Train Settings" Padding="5" Width="480">
             <StackPanel>
                 <StackPanel x:Name="TrainType" Orientation="Horizontal">
@@ -29,7 +26,7 @@
                     <TextBlock Margin ="3" Text="Threshold of the Error"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button IsDefault="True" x:Name ="Train" Click="Train_Click" Margin ="13 8 10 8" Width ="70" Content="Train"/>
+                    <Button IsDefault="True" x:Name ="Accept" Click="Accept_Click" Margin ="13 8 10 8" Width ="70" Content="Accept"/>
                     <Button IsCancel="True" Margin ="8" Width ="70" HorizontalAlignment="Right" Content="Cancel"/>
                 </StackPanel>
             </StackPanel>

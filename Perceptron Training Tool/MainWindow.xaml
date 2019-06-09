@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Perceptron_Training_Tool"
         mc:Ignorable="d"
-        Title="Perceptron Training Tool" Height="550" Width="800" MinHeight="550" MinWidth="800">
+        Title="Perceptron Training Tool" Height="400" Width="800" MinHeight="400" MinWidth="800">
     <Window.DataContext>
         <local:MainWindow/>
     </Window.DataContext>
@@ -16,9 +16,9 @@
                 <MenuItem Header="Export"></MenuItem>
                 <MenuItem Header="Import"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Train" >
-                <MenuItem x:Name="EpochTrain" Click="EpochTrain_Click" Header="Train by Epoch"/>
-                <MenuItem x:Name="ErrorTrain" Click="ErrorTrain_Click" Header="Train by Error"/>
+            <MenuItem Header="Training">
+                <MenuItem x:Name="TrainingSetup" Header="Setup" Click="TrainingSetup_Click" />
+                <MenuItem x:Name="Train" Header="Train" Click="Train_Click"/>
             </MenuItem>
             <MenuItem Header="Chart" >
                 <MenuItem x:Name="OpenChart" Header="Open" Click="OpenChart_Click"/>
@@ -29,7 +29,10 @@
             <StatusBarItem/>
             <TextBlock x:Name ="ProgressBar" Text="ProgressBar's Place"/>
         </StatusBar>
-        <GroupBox DockPanel.Dock="Left" Header="Calculate Output" Padding="5" Width="200">
+        <GroupBox Header="Train Information" Padding="5" Width="250">
+            <TextBox x:Name="TrainInformation"></TextBox>
+        </GroupBox>
+        <GroupBox Header="Calculate Output" Padding="5" Width="200">
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name ="InputBox" PreviewTextInput="InputBox_PreviewTextInput" Margin ="3" Width="120" HorizontalAlignment="Left">0 1</TextBox>
@@ -45,7 +48,7 @@
                 </StackPanel>
             </StackPanel>
         </GroupBox>
-        <GroupBox DockPanel.Dock="Left" Header="Neural Network Parameters" Padding="5" Width="200">
+        <GroupBox Header="Neural Network Parameters" Padding="5" Width="200">
             <StackPanel>
                 <TextBox x:Name="TextBox"> </TextBox>
             </StackPanel> 

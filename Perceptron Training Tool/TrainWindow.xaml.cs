@@ -38,10 +38,6 @@ namespace Perceptron_Training_Tool
 
         }
 
-        private void Train_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void SelectTypeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox selectTypeBox = (ComboBox)sender;
@@ -62,6 +58,11 @@ namespace Perceptron_Training_Tool
         private void SelectActivationTypeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Accept_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }
