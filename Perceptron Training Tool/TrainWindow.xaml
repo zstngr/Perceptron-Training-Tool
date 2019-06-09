@@ -1,0 +1,38 @@
+﻿<Window x:Class="Perceptron_Training_Tool.TrainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Perceptron_Training_Tool"
+        mc:Ignorable="d"
+        Title="TrainWindow" Height="300" Width="800">
+    <StackPanel Orientation="Horizontal">
+        <GroupBox Header="Train Information" Padding="5" Width="200">
+            <TextBox x:Name="TrainInformation"></TextBox>
+        </GroupBox>
+        <GroupBox Header="Train Settings" Padding="5" Width="480">
+            <StackPanel>
+                <StackPanel x:Name="TrainType" Orientation="Horizontal">
+                    <ComboBox x:Name="SelectTypeBox" SelectionChanged="SelectTypeBox_SelectionChanged" Width="128"  Margin="3" Height="22" IsEditable="True" IsReadOnly="True" Text="Select Type"/>
+                    <TextBlock Margin ="3" Text="Type of the Train" />
+                </StackPanel>
+                <StackPanel x:Name="ActivationType" Orientation="Horizontal">
+                    <ComboBox x:Name="SelectActivationTypeBox" SelectionChanged="SelectActivationTypeBox_SelectionChanged" Width="128"  Margin="3" Height="22" IsEditable="True" IsReadOnly="True" Text="Select Activation"/>
+                    <TextBlock Margin ="3" Text="Type of Activation Function" />
+                </StackPanel>
+                <StackPanel x:Name="EpochPanel" Orientation="Horizontal">
+                    <TextBox x:Name="EpochBox" PreviewTextInput="EpochBox_PreviewTextInput" IsEnabled="False" MaxLength="8" Margin ="3" Width="80" HorizontalAlignment="Left">500</TextBox>
+                    <TextBlock Margin ="3" Text="Count of Epochs" />
+                </StackPanel>
+                <StackPanel x:Name="ErrorPanel" Orientation="Horizontal">
+                    <TextBox x:Name="ErrorBox" PreviewTextInput="ErrorBox_PreviewTextInput" IsEnabled="False" MaxLength="8" Margin ="3" Width="80" HorizontalAlignment="Left">0,05</TextBox>
+                    <TextBlock Margin ="3" Text="Threshold of the Error"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button IsDefault="True" x:Name ="Train" Click="Train_Click" Margin ="13 8 10 8" Width ="70" Content="Train"/>
+                    <Button IsCancel="True" Margin ="8" Width ="70" HorizontalAlignment="Right" Content="Cancel"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</Window>

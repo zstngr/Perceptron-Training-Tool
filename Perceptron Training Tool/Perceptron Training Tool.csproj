@@ -102,6 +102,9 @@
     <Compile Include="GraphWindow.xaml.cs">
       <DependentUpon>GraphWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TrainWindow.xaml.cs">
+      <DependentUpon>TrainWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="CreateNetworkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +122,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="GraphWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TrainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

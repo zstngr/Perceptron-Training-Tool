@@ -105,11 +105,8 @@ namespace Perceptron_Training_Tool
             LineSeries lineserie = new LineSeries
             {
                 ItemsSource = Points,
-                DataFieldX = "Epoch",
-                DataFieldY = "Error",
                 StrokeThickness = 2,
-                MarkerSize = 0,
-                Color = System.Windows.Media.Colors.Yellow,
+                Color = System.Windows.Media.Colors.Blue,
                 LineStyle = LineStyle.Solid,
                 MarkerType = MarkerType.None,
             };
@@ -133,12 +130,15 @@ namespace Perceptron_Training_Tool
 
         private void EpochTrain_Click(object sender, RoutedEventArgs e)
         {
-            network.Train(inSet, outSet, 2);
+            //network.Train(inSet, outSet, 2000);
+            TrainWindow trainWindow = new TrainWindow();
+            trainWindow.Owner = this;
+            trainWindow.Show();
         }
 
         private void ErrorTrain_Click(object sender, RoutedEventArgs e)
         {
-
+            network.Train(inSet, outSet, 0.005);
         }
     }
 }
